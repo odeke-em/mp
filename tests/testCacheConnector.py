@@ -19,6 +19,10 @@ class TestInitializer(unittest.TestCase):
         cc.put(key, value)
         self.assertEqual(cc.get(key, value), value)
 
+        # Passing in a Callback returns None
+        self.assertEqual(cc.put(key, 'lingo', print), None)
+        self.assertEqual(cc.pop(key, 'angle', lambda *args, **kwargs: 'nil'), None)
+
         __terminationToggle = False
         def dFuncUnchained(*args, **kwargs):
             global __terminationToggle
